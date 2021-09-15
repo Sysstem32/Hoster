@@ -1,0 +1,50 @@
+<nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <div class='container-fluid'>
+      <a class='navbar-brand logo-brand' href='#'><%= bot.user.username.toUpperCase() %></a>
+      <button
+        class='navbar-toggler'
+        type='button'
+        data-bs-toggle='collapse'
+        data-bs-target='#navbarNav'
+        aria-controls='navbarNav'
+        aria-expanded='false'
+        aria-label='Toggle navigation'>
+        <span class='navbar-toggler-icon'></span>
+      </button>
+      <div class='collapse navbar-collapse' id='navbarNav'>
+        <ul class='navbar-nav'>
+          <% if (title === 'Dashboard') { %>
+            <li class='nav-item'>
+              <button type='button' class='nav-link active bg-blue shadow' data-bs-toggle='modal' data-bs-target='#newInstance'>Nova Instancia</button>
+            </li>
+          <% } %>
+          <% if (!logged) { %>
+            <li class='nav-item'>
+              <a class='nav-link active bg-blue shadow' href='#'>Logar</a>
+            </li>
+          <% } else { %>
+            <li class='nav-item dropdown'>
+              <img class='img-user' src='<%= user.displayAvatarURL({ dynamic: true }) %>' alt=' '>
+              <a class='nav-link dropdown-toggle' href='#' id='navbarDarkDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                <%= user.username %>
+              </a>
+              <ul class='dropdown-menu dropdown-menu-dark' aria-labelledby='navbarDarkDropdownMenuLink'>
+                <li>
+                  <a class='dropdown-item' href='/dashboard'>Painel</a>
+                </li>
+                <li>
+                  <a class='dropdown-item' href='/suporte'>Suporte</a>
+                </li>
+                <li>
+                  <a class='dropdown-item' href='/terms'>Termos</a>
+                </li>
+                <li>
+                  <a class='dropdown-item cl-red' href='/login'>Deslogar</a>
+                </li>
+              </ul>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+</nav>

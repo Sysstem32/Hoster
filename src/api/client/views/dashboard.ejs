@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='pt-Br'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='public/index.bundle.css'>
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./partials/header.ejs', { bot: bot, user: user, logged: logged, savedUser: savedUser }) %>
+    <section class='background-dark vh-100 w-auto'>
+        <div class='magic container'>
+            <h1 class='welcome p-2 mb-4'>Suas Instancias</h1>
+            <div class='instances w-70'  data-to-location='/dashboard/0000' data-to-button='0000'>
+                <div class='i-thumbnail-div'>
+                    <img class='i-thumbnail' src='<%= instance.image %>' alt=' '>   
+                    <img class='i-image' src='<%= instance.image %>' alt=' '>
+                </div>
+                <div class='i-info shadow p-2'>
+                    <h5 class='i-name'><%= instance.name %></h5>
+                    <button class='btn btn-prymary btn-lg shadow' id='0000'>
+                        Gerenciar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class='modal fade' id='newInstance' tabindex='-1' aria-labelledby='newInstanceLabel' aria-hidden='true'>
+            <div class='modal-dialog'>
+                <div class='modal-content  bg-dark'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='newInstanceLabel'>Crie uma nova Instancia</h5>
+                    <button type='button' class='btn-close btn-close-white' data-bs-dismiss='modal' aria-label='Close' id="closeModel"></button>
+                </div>
+                <div class='modal-body'>
+                    <form enctype="multipart/form-data" class='flex-form' method='POST' action='/new-instance'>
+                        <div>
+                            <label for='bot_id'>
+                                <p>ID</p>
+                            </label>
+                            <input class='input-text w-95' type='text' name='botId' id='bot_id' placeholder="Digite o ID do bot">
+                        </div>
+                        <label type='button' class='btn btn-secondary btn-sm shadow' for='bot_files'>
+                            Enviar Arquivos
+                        </label>
+                        <input type='file' name='botFiles' id='bot_files' style='display: none;' max="1">
+                        <input type="submit" id="submit" style="display: none;">
+                    </form>
+                </div>
+                <div class='modal-footer'>
+                    <label type='submit' class='btn btn-primary btn-sm shadow' for="submit" id="submitButton">Criar</label>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Toast -->
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="liveToast" class="toast bg-dark" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-bdark">
+                    <strong class="me-auto">Dashboard</strong>
+                    <small>Agora</small>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" data-toast>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src='/public/main.bundle.js' type="module"></script>
+</body>
+</html>
